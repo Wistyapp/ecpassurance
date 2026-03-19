@@ -165,36 +165,60 @@ class FooterSection extends StatelessWidget {
   }
 }
 
-class _FooterLink extends StatelessWidget {
+class _FooterLink extends StatefulWidget {
   final String label;
   final IconData? icon;
   final bool isLink;
+  final VoidCallback? onTap;
 
-  const _FooterLink({required this.label, this.icon, this.isLink = false});
+  const _FooterLink({
+    required this.label,
+    this.icon,
+    this.isLink = false,
+    this.onTap,
+  });
+
+  @override
+  State<_FooterLink> createState() => _FooterLinkState();
+}
+
+class _FooterLinkState extends State<_FooterLink> {
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[
-            Icon(icon, color: Colors.white.withOpacity(0.4), size: 14),
-            const SizedBox(width: 8),
-          ],
-          Flexible(
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.white.withOpacity(isLink ? 0.7 : 0.5),
-                decoration: isLink ? TextDecoration.underline : null,
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = widget.isLink),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: widget.isLink ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.icon != null) ...[
+                Icon(widget.icon, color: Colors.white.withOpacity(0.4), size: 14),
+                const SizedBox(width: 8),
+              ],
+              Flexible(
+                child: Text(
+                  widget.label,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.white.withOpacity(
+                      _isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5),
+                    ),
+                    decoration: widget.isLink ? TextDecoration.underline : null,
+                    decorationColor: Colors.white.withOpacity(0.7),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

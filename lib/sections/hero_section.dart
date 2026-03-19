@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
 import '../utils/ecp_responsive.dart';
 
@@ -218,8 +219,11 @@ class _HeroSectionState extends State<HeroSection>
                             label: '05 56 60 48 53',
                             icon: Icons.phone,
                             isPrimary: false,
-                            onTap: () {
-                              // url_launcher pour appeler
+                            onTap: () async {
+                              final uri = Uri.parse('tel:+33556604853');
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              }
                             },
                           ),
                         ],

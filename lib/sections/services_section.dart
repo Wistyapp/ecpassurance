@@ -4,7 +4,8 @@ import '../theme/app_theme.dart';
 import '../utils/ecp_responsive.dart';
 
 class ServicesSection extends StatefulWidget {
-  const ServicesSection({super.key});
+  final Function(String serviceId)? onServiceTap;
+  const ServicesSection({super.key, this.onServiceTap});
 
   @override
   State<ServicesSection> createState() => _ServicesSectionState();
@@ -111,6 +112,24 @@ class _ServicesSectionState extends State<ServicesSection>
                         child: _ServiceCard(category: cat, animation: _animController),
                       ),
                     )).toList(),
+                  ),
+                const SizedBox(height: 30),
+                if (widget.onServiceTap != null)
+                  Center(
+                    child: OutlinedButton.icon(
+                      onPressed: () => widget.onServiceTap!(''),
+                      icon: const Icon(Icons.arrow_forward),
+                      label: const Text(
+                        'Voir tous nos services',
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: AppColors.primary,
+                        side: const BorderSide(color: AppColors.primary),
+                        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      ),
+                    ),
                   ),
               ],
             ),

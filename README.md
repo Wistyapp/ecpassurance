@@ -1,4 +1,4 @@
-# 🛡️ ECP Assurances
+#  ECP Assurances
 
 ### Écoute • Conseil • Prévoyance
 
@@ -17,7 +17,7 @@ Built with Flutter Web • Firebase • Made with ❤️
 
 ---
 
-## 📸 Aperçu
+##  Aperçu
 
 | Desktop | Mobile |
 |---------|--------|

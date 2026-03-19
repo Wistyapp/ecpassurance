@@ -1,7 +1,9 @@
-import 'package:ecpassurances/sections/home_page.dart';
-import 'package:ecpassurances/theme/app_theme.dart';
+// lib/main.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'theme/app_theme.dart';
+import 'router/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,11 +16,11 @@ class ECPApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'ECP Assurances - Courtier en assurances à Mérignac',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const HomePage(),
+      routerConfig: AppRouter.router,
     );
   }
 }

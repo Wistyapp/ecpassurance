@@ -1,38 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+    <base href="$FLUTTER_BASE_HREF">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+    <!-- SEO Meta Tags -->
+    <title>ECP Assurances | Courtier en assurances à Mérignac (33)</title>
+    <meta name="description" content="ECP Assurances, courtier indépendant à Mérignac. Solutions d'assurance sur-mesure pour professionnels et particuliers en Gironde. Audit gratuit de vos contrats.">
+    <meta name="keywords" content="courtier assurance, Mérignac, Gironde, Bordeaux, assurance professionnelle, RC Pro, mutuelle, assurance habitation, audit gratuit">
+    <meta name="author" content="ECP Assurances">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ecp-assurances.com/">
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="ECP Assurances | Courtier en assurances à Mérignac">
+    <meta property="og:description" content="Expert en solutions d'assurance sur-mesure. Bénéficiez d'un audit gratuit pour optimiser vos contrats.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecp-assurances.com/">
+    <meta property="og:image" content="https://ecp-assurances.com/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="ECP Assurances">
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ECP Assurances | Courtier en assurances à Mérignac">
+    <meta name="twitter:description" content="Expert en solutions d'assurance sur-mesure en Gironde.">
+    <meta name="twitter:image" content="https://ecp-assurances.com/og-image.png">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="ECP Assurances web app">
+    <!-- Données structurées JSON-LD (Google Rich Results) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "InsuranceAgency",
+            "name": "ECP Assurances",
+            "alternateName": "Écoute Conseil Prévoyance",
+            "url": "https://ecp-assurances.com",
+            "telephone": "+33556604853",
+            "email": "contact@ecp-assurances.com",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "1, avenue Neil Armstrong",
+                "addressLocality": "Mérignac",
+                "postalCode": "33700",
+                "addressCountry": "FR"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 44.8386,
+                "longitude": -0.6443
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            },
+            "sameAs": [],
+            "description": "Courtier en assurances indépendant à Mérignac. Solutions sur-mesure pour professionnels et particuliers en Gironde.",
+            "priceRange": "€€",
+            "areaServed": {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 44.8378,
+                    "longitude": -0.5792
+                },
+                "geoRadius": "50000"
+            }
+        }
+    </script>
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="ecpassurances">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+    <!-- Preload pour performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <title>ecpassurances</title>
-  <link rel="manifest" href="manifest.json">
+    <!-- Loading style -->
+    <style>
+        body {
+          margin: 0;
+          background-color: #1B3A5C;
+          overflow: hidden;
+        }
+        .loading-screen {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          gap: 20px;
+        }
+        .loading-screen h1 {
+          color: white;
+          font-family: sans-serif;
+          font-size: 28px;
+          font-weight: 800;
+          letter-spacing: 4px;
+          margin: 0;
+        }
+        .loading-screen p {
+          color: #E8A838;
+          font-family: sans-serif;
+          font-size: 11px;
+          letter-spacing: 3px;
+          font-weight: 600;
+          margin: 0;
+        }
+        .loader {
+          width: 40px;
+          height: 40px;
+          border: 3px solid rgba(255,255,255,0.15);
+          border-top: 3px solid #E8A838;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<div class="loading-screen" id="loading">
+    <h1>ECP</h1>
+    <p>ASSURANCES</p>
+    <div class="loader"></div>
+</div>
+
+<script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

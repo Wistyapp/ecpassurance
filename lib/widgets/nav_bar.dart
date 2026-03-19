@@ -1,9 +1,11 @@
+// lib/widgets/nav_bar.dart — VERSION AVEC ROUTING
+
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../utils/ecp_responsive.dart';
 
-
 class NavBar extends StatefulWidget {
+  final String currentPath;
   final VoidCallback onHomeTap;
   final VoidCallback onServicesTap;
   final VoidCallback onAdvantagesTap;
@@ -11,6 +13,7 @@ class NavBar extends StatefulWidget {
 
   const NavBar({
     super.key,
+    required this.currentPath,
     required this.onHomeTap,
     required this.onServicesTap,
     required this.onAdvantagesTap,
@@ -33,24 +36,16 @@ class _NavBarState extends State<NavBar> {
         horizontal: isMobile ? 16 : 40,
         vertical: 16,
       ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Logo
+              // ── Logo ──
               InkWell(
                 onTap: widget.onHomeTap,
+                hoverColor: Colors.transparent,
+                splashColor: Colors.transparent,
                 child: Row(
                   children: [
                     Container(
@@ -96,19 +91,34 @@ class _NavBarState extends State<NavBar> {
                 ),
               ),
 
-              // Navigation desktop
+              // ── Navigation Desktop ──
               if (!isMobile)
                 Row(
                   children: [
-                    _NavItem(label: 'Accueil', onTap: widget.onHomeTap),
-                    _NavItem(label: 'Services', onTap: widget.onServicesTap),
-                    _NavItem(label: 'Nos atouts', onTap: widget.onAdvantagesTap),
+                    _NavItem(
+                      label: 'Accueil',
+                      isActive: widget.currentPath == '/',
+                      onTap: widget.onHomeTap,
+                    ),
+                    _NavItem(
+                      label: 'Services',
+                      isActive: widget.currentPath.startsWith('/services'),
+                      onTap: widget.onServicesTap,
+                    ),
+                    _NavItem(
+                      label: 'Nos atouts',
+                      isActive: false,
+                      onTap: widget.onAdvantagesTap,
+                    ),
                     const SizedBox(width: 16),
-                    _ContactButton(onTap: widget.onContactTap),
+                    _ContactButton(
+                      isActive: widget.currentPath == '/contact',
+                      onTap: widget.onContactTap,
+                    ),
                   ],
                 ),
 
-              // Hamburger menu mobile
+              // ── Hamburger Mobile ──
               if (isMobile)
                 IconButton(
                   icon: AnimatedSwitcher(
@@ -124,20 +134,40 @@ class _NavBarState extends State<NavBar> {
             ],
           ),
 
-          // Menu mobile déroulant
+          // ── Menu Mobile ──
           AnimatedCrossFade(
             firstChild: const SizedBox.shrink(),
             secondChild: Padding(
               padding: const EdgeInsets.only(top: 16),
               child: Column(
                 children: [
-                  _MobileNavItem(label: 'Accueil', onTap: () { widget.onHomeTap(); setState(() => _isMenuOpen = false); }),
-                  _MobileNavItem(label: 'Services', onTap: () { widget.onServicesTap(); setState(() => _isMenuOpen = false); }),
-                  _MobileNavItem(label: 'Nos atouts', onTap: () { widget.onAdvantagesTap(); setState(() => _isMenuOpen = false); }),
+                  _MobileNavItem(
+                    label: 'Accueil',
+                    isActive: widget.currentPath == '/',
+                    onTap: () { widget.onHomeTap(); setState(() => _isMenuOpen = false); },
+                  ),
+                  _MobileNavItem(
+                    label: 'Services',
+                    isActive: widget.currentPath.startsWith('/services'),
+                    onTap: () { widget.onServicesTap(); setState(() => _isMenuOpen = false); },
+                  ),
+                  _MobileNavItem(
+                    label: 'Nos atouts',
+                    isActive: false,
+                    onTap: () { widget.onAdvantagesTap(); setState(() => _isMenuOpen = false); },
+                  ),
+                  _MobileNavItem(
+                    label: 'Contact',
+                    isActive: widget.currentPath == '/contact',
+                    onTap: () { widget.onContactTap(); setState(() => _isMenuOpen = false); },
+                  ),
                   const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
-                    child: _ContactButton(onTap: () { widget.onContactTap(); setState(() => _isMenuOpen = false); }),
+                    child: _ContactButton(
+                      isActive: widget.currentPath == '/contact',
+                      onTap: () { widget.onContactTap(); setState(() => _isMenuOpen = false); },
+                    ),
                   ),
                 ],
               ),
@@ -151,10 +181,12 @@ class _NavBarState extends State<NavBar> {
   }
 }
 
+// ── NavItem avec indicateur actif ──
 class _NavItem extends StatefulWidget {
   final String label;
+  final bool isActive;
   final VoidCallback onTap;
-  const _NavItem({required this.label, required this.onTap});
+  const _NavItem({required this.label, required this.isActive, required this.onTap});
 
   @override
   State<_NavItem> createState() => _NavItemState();
@@ -165,12 +197,15 @@ class _NavItemState extends State<_NavItem> {
 
   @override
   Widget build(BuildContext context) {
+    final showUnderline = _isHovered || widget.isActive;
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: InkWell(
         onTap: widget.onTap,
         borderRadius: BorderRadius.circular(8),
+        hoverColor: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
@@ -180,18 +215,20 @@ class _NavItemState extends State<_NavItem> {
                 widget.label,
                 style: TextStyle(
                   fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: _isHovered ? AppColors.primaryLight : AppColors.textPrimary,
+                  fontWeight: widget.isActive ? FontWeight.w700 : FontWeight.w500,
+                  color: widget.isActive
+                      ? AppColors.primary
+                      : (_isHovered ? AppColors.primaryLight : AppColors.textPrimary),
                 ),
               ),
               const SizedBox(height: 2),
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                height: 2,
-                width: _isHovered ? 30 : 0,
+                height: 2.5,
+                width: showUnderline ? 30 : 0,
                 decoration: BoxDecoration(
-                  color: AppColors.accent,
-                  borderRadius: BorderRadius.circular(1),
+                  color: widget.isActive ? AppColors.primary : AppColors.accent,
+                  borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ],
@@ -204,22 +241,34 @@ class _NavItemState extends State<_NavItem> {
 
 class _MobileNavItem extends StatelessWidget {
   final String label;
+  final bool isActive;
   final VoidCallback onTap;
-  const _MobileNavItem({required this.label, required this.onTap});
+  const _MobileNavItem({required this.label, required this.isActive, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+      title: Text(
+        label,
+        style: TextStyle(
+          fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
+          color: isActive ? AppColors.primary : AppColors.textPrimary,
+        ),
+      ),
       onTap: onTap,
-      trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+      trailing: Icon(
+        isActive ? Icons.circle : Icons.arrow_forward_ios,
+        size: isActive ? 8 : 14,
+        color: isActive ? AppColors.accent : null,
+      ),
     );
   }
 }
 
 class _ContactButton extends StatefulWidget {
   final VoidCallback onTap;
-  const _ContactButton({required this.onTap});
+  final bool isActive;
+  const _ContactButton({required this.onTap, required this.isActive});
 
   @override
   State<_ContactButton> createState() => _ContactButtonState();
@@ -240,8 +289,10 @@ class _ContactButtonState extends State<_ContactButton> {
           icon: const Icon(Icons.calendar_today, size: 16),
           label: const Text('Audit gratuit'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: _isHovered ? AppColors.primaryLight : AppColors.primary,
-            foregroundColor: Colors.white,
+            backgroundColor: widget.isActive
+                ? AppColors.accent
+                : (_isHovered ? AppColors.primaryLight : AppColors.primary),
+            foregroundColor: widget.isActive ? AppColors.primary : Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             elevation: _isHovered ? 8 : 2,
