@@ -92,7 +92,7 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
       child: Container(
         padding: EdgeInsets.symmetric(vertical: isMobile ? 60 : 100),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onBackground,
         ),
         child: Center(
           child: SizedBox(
@@ -110,7 +110,7 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                           decoration: BoxDecoration(
-                            color: AppColors.accent.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Text(
@@ -118,7 +118,7 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
-                              color: AppColors.accent,
+                              color: Theme.of(context).colorScheme.secondary,
                               letterSpacing: 2,
                             ),
                           ),
@@ -130,7 +130,7 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
                           style: TextStyle(
                             fontSize: isMobile ? 26 : 38,
                             fontWeight: FontWeight.w800,
-                            color: AppColors.textPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                       ],
@@ -198,18 +198,18 @@ class _AdvantageCardState extends State<_AdvantageCard> {
             transform: Matrix4.identity()..translate(0.0, _isHovered ? -6.0 : 0.0),
             padding: const EdgeInsets.all(28),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: _isHovered
-                    ? widget.advantage.gradient[0].withOpacity(0.3)
-                    : Colors.grey.withOpacity(0.1),
+                    ? Theme.of(context).colorScheme.secondary.withOpacity(0.3)
+                    : Theme.of(context).colorScheme.outline.withOpacity(0.1),
               ),
               boxShadow: [
                 BoxShadow(
                   color: _isHovered
                       ? widget.advantage.gradient[0].withOpacity(0.15)
-                      : Colors.black.withOpacity(0.04),
+                      : Theme.of(context).colorScheme.shadow.withOpacity(0.04),
                   blurRadius: _isHovered ? 25 : 10,
                   offset: Offset(0, _isHovered ? 10 : 4),
                 ),
@@ -235,7 +235,7 @@ class _AdvantageCardState extends State<_AdvantageCard> {
                     ]
                         : [],
                   ),
-                  child: Icon(widget.advantage.icon, color: Colors.white, size: 26),
+                  child: Icon(widget.advantage.icon, color: Theme.of(context).colorScheme.onSecondary, size: 26),
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -243,7 +243,7 @@ class _AdvantageCardState extends State<_AdvantageCard> {
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -252,7 +252,7 @@ class _AdvantageCardState extends State<_AdvantageCard> {
                     widget.advantage.description,
                     style: const TextStyle(
                       fontSize: 13.5,
-                      color: AppColors.textSecondary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       height: 1.6,
                     ),
                   ),

@@ -62,14 +62,17 @@ class _NavBarState extends State<NavBar> {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.primary, AppColors.primaryLight],
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context).colorScheme.primary,
+                            Theme.of(context).colorScheme.primaryContainer,
+                          ],
                         ),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.shield_outlined,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onPrimary,
                         size: 28,
                       ),
                     ),
@@ -82,7 +85,7 @@ class _NavBarState extends State<NavBar> {
                           style: TextStyle(
                             fontSize: isMobile ? 20 : 24,
                             fontWeight: FontWeight.w800,
-                            color: AppColors.primary,
+                            color: Theme.of(context).colorScheme.primary,
                             letterSpacing: 2,
                             height: 1.1,
                           ),
@@ -92,7 +95,7 @@ class _NavBarState extends State<NavBar> {
                           style: TextStyle(
                             fontSize: isMobile ? 9 : 10,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.accent,
+                            color: Theme.of(context).colorScheme.secondary,
                             letterSpacing: 3,
                           ),
                         ),
@@ -146,7 +149,7 @@ class _NavBarState extends State<NavBar> {
                     child: Icon(
                       _isMenuOpen ? Icons.close : Icons.menu,
                       key: ValueKey(_isMenuOpen),
-                      color: AppColors.primary,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   onPressed: () => setState(() => _isMenuOpen = !_isMenuOpen),
@@ -246,8 +249,8 @@ class _NavItemState extends State<_NavItem> {
                   fontSize: 15,
                   fontWeight: widget.isActive ? FontWeight.w700 : FontWeight.w500,
                   color: widget.isActive
-                      ? AppColors.primary
-                      : (_isHovered ? AppColors.primaryLight : AppColors.textPrimary),
+                      ? Theme.of(context).colorScheme.primary
+                      : (_isHovered ? Theme.of(context).colorScheme.primaryContainer : Theme.of(context).colorScheme.onSurface),
                 ),
               ),
               const SizedBox(height: 2),
@@ -256,7 +259,7 @@ class _NavItemState extends State<_NavItem> {
                 height: 2.5,
                 width: showUnderline ? 30 : 0,
                 decoration: BoxDecoration(
-                  color: widget.isActive ? AppColors.primary : AppColors.accent,
+                  color: widget.isActive ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -281,14 +284,14 @@ class _MobileNavItem extends StatelessWidget {
         label,
         style: TextStyle(
           fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
-          color: isActive ? AppColors.primary : AppColors.textPrimary,
+          color: isActive ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurface,
         ),
       ),
       onTap: onTap,
       trailing: Icon(
         isActive ? Icons.circle : Icons.arrow_forward_ios,
         size: isActive ? 8 : 14,
-        color: isActive ? AppColors.accent : null,
+        color: isActive ? Theme.of(context).colorScheme.secondary : null,
       ),
     );
   }
@@ -319,9 +322,9 @@ class _ContactButtonState extends State<_ContactButton> {
           label: const Text('Audit gratuit'),
           style: ElevatedButton.styleFrom(
             backgroundColor: widget.isActive
-                ? AppColors.accent
-                : (_isHovered ? AppColors.primaryLight : AppColors.primary),
-            foregroundColor: widget.isActive ? AppColors.primary : Colors.white,
+                ? Theme.of(context).colorScheme.secondary
+                : (_isHovered ? Theme.of(context).colorScheme.primaryContainer : Theme.of(context).colorScheme.primary),
+            foregroundColor: widget.isActive ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onPrimary,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             elevation: _isHovered ? 8 : 2,
@@ -362,7 +365,7 @@ class _ThemeToggleButtonState extends State<_ThemeToggleButton> {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: _isHovered
-                ? AppColors.accent.withOpacity(0.1)
+                ? Theme.of(context).colorScheme.secondary.withOpacity(0.1)
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(12),
           ),
@@ -372,7 +375,7 @@ class _ThemeToggleButtonState extends State<_ThemeToggleButton> {
               Icon(
                 widget.isDarkMode ? Icons.dark_mode : Icons.light_mode,
                 size: 20,
-                color: widget.isDarkMode ? AppColors.accent : AppColors.primary,
+                color: widget.isDarkMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.primary,
               ),
               const SizedBox(width: 8),
               if (!Responsive.isMobile(context))
@@ -381,7 +384,7 @@ class _ThemeToggleButtonState extends State<_ThemeToggleButton> {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: widget.isDarkMode ? AppColors.accent : AppColors.primary,
+                    color: widget.isDarkMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.primary,
                   ),
                 ),
             ],

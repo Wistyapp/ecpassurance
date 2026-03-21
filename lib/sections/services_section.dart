@@ -21,7 +21,7 @@ class _ServicesSectionState extends State<ServicesSection>
       title: 'Professionnels',
       subtitle: 'Protection complète pour votre entreprise',
       icon: Icons.business_center,
-      color: AppColors.primary,
+      color: Theme.of(context).colorScheme.primary,
       services: [
         'Multirisque Professionnelle adaptée à votre secteur',
         'Responsabilité Civile Professionnelle (RC Pro)',
@@ -36,7 +36,7 @@ class _ServicesSectionState extends State<ServicesSection>
       title: 'Particuliers',
       subtitle: 'Sécurité et sérénité au quotidien',
       icon: Icons.family_restroom,
-      color: AppColors.primaryLight,
+      color: Theme.of(context).colorScheme.primaryContainer,
       services: [
         'Assurance Habitation (propriétaire et locataire)',
         'Assurance Auto et Moto',
@@ -80,7 +80,7 @@ class _ServicesSectionState extends State<ServicesSection>
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: isMobile ? 60 : 100),
-        color: AppColors.background,
+        color: Theme.of(context).colorScheme.background,
         child: Center(
           child: SizedBox(
             width: contentWidth,
@@ -124,8 +124,8 @@ class _ServicesSectionState extends State<ServicesSection>
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.primary,
-                        side: const BorderSide(color: AppColors.primary),
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                        side: BorderSide(color: Theme.of(context).colorScheme.primary),
                         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                       ),
@@ -166,7 +166,7 @@ class _SectionHeader extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               decoration: BoxDecoration(
-                color: AppColors.accent.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
@@ -174,7 +174,7 @@ class _SectionHeader extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.accent,
+                  color: Theme.of(context).colorScheme.secondary,
                   letterSpacing: 2,
                 ),
               ),
@@ -186,7 +186,7 @@ class _SectionHeader extends StatelessWidget {
               style: TextStyle(
                 fontSize: isMobile ? 26 : 38,
                 fontWeight: FontWeight.w800,
-                color: AppColors.textPrimary,
+                color: Theme.of(context).colorScheme.onSurface,
                 height: 1.2,
               ),
             ),
@@ -198,7 +198,7 @@ class _SectionHeader extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: isMobile ? 14 : 16,
-                  color: AppColors.textSecondary,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   height: 1.6,
                 ),
               ),
@@ -234,13 +234,13 @@ class _ServiceCardState extends State<_ServiceCard> {
           duration: const Duration(milliseconds: 300),
           transform: Matrix4.identity()..translate(0.0, _isHovered ? -8.0 : 0.0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onSecondary,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
                 color: _isHovered
                     ? widget.category.color.withOpacity(0.2)
-                    : Colors.black.withOpacity(0.06),
+                    : Theme.of(context).colorScheme.onSurface.withOpacity(0.06),
                 blurRadius: _isHovered ? 30 : 15,
                 offset: Offset(0, _isHovered ? 15 : 5),
               ),
@@ -266,10 +266,10 @@ class _ServiceCardState extends State<_ServiceCard> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Icon(widget.category.icon, color: Colors.white, size: 28),
+                      child: Icon(widget.category.icon, color: Theme.of(context).colorScheme.onSecondary, size: 28),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
@@ -281,7 +281,7 @@ class _ServiceCardState extends State<_ServiceCard> {
                             style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onSecondary,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -289,7 +289,7 @@ class _ServiceCardState extends State<_ServiceCard> {
                             widget.category.subtitle,
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.white.withOpacity(0.8),
+                              color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.8),
                             ),
                           ),
                         ],
@@ -313,10 +313,10 @@ class _ServiceCardState extends State<_ServiceCard> {
                             margin: const EdgeInsets.only(top: 3),
                             padding: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
-                              color: AppColors.success.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(Icons.check, color: AppColors.success, size: 16),
+                            child: Icon(Icons.check, color: Theme.of(context).colorScheme.secondary, size: 16),
                           ),
                           const SizedBox(width: 12),
                           Expanded(
@@ -324,7 +324,7 @@ class _ServiceCardState extends State<_ServiceCard> {
                               service,
                               style: const TextStyle(
                                 fontSize: 14,
-                                color: AppColors.textPrimary,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 height: 1.4,
                               ),
                             ),

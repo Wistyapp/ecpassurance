@@ -76,9 +76,9 @@ class _HeroSectionState extends State<HeroSection>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.gradient1,
-            AppColors.gradient2,
-            AppColors.gradient3,
+            Theme.of(context).colorScheme.primary,
+            Theme.of(context).colorScheme.primaryContainer,
+            Theme.of(context).colorScheme.secondary,
           ],
         ),
       ),
@@ -95,7 +95,7 @@ class _HeroSectionState extends State<HeroSection>
                 height: 400,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withValues(alpha: 0.03),
+                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.03),
                 ),
               ),
             ),
@@ -108,7 +108,7 @@ class _HeroSectionState extends State<HeroSection>
               height: 300,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withValues(alpha:0.02),
+                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.02),
               ),
             ),
           ),
@@ -131,19 +131,19 @@ class _HeroSectionState extends State<HeroSection>
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha:0.1),
+                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: Colors.white.withValues(alpha:0.2)),
+                          border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2)),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.verified, color: AppColors.accent, size: 18),
+                            Icon(Icons.verified, color: Theme.of(context).colorScheme.secondary, size: 18),
                             const SizedBox(width: 8),
                             Text(
                               'Courtier indépendant à Mérignac',
                               style: TextStyle(
-                                color: Colors.white.withValues(alpha:0.9),
+                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.9),
                                 fontSize: isMobile ? 12 : 14,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -160,7 +160,7 @@ class _HeroSectionState extends State<HeroSection>
                         style: TextStyle(
                           fontSize: isMobile ? 32 : 56,
                           fontWeight: FontWeight.w800,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onBackground,
                           height: 1.15,
                           letterSpacing: -0.5,
                         ),
@@ -168,7 +168,7 @@ class _HeroSectionState extends State<HeroSection>
                       const SizedBox(height: 8),
                       ShaderMask(
                         shaderCallback: (bounds) => const LinearGradient(
-                          colors: [AppColors.accent, AppColors.accentLight],
+                          colors: [Theme.of(context).colorScheme.secondary, Theme.of(context).colorScheme.secondary.withOpacity(0.8)],
                         ).createShader(bounds),
                         child: Text(
                           "L'assurance d'un bon conseil",
@@ -176,7 +176,7 @@ class _HeroSectionState extends State<HeroSection>
                           style: TextStyle(
                             fontSize: isMobile ? 24 : 36,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onBackground,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
@@ -191,7 +191,7 @@ class _HeroSectionState extends State<HeroSection>
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: isMobile ? 15 : 18,
-                            color: Colors.white.withValues(alpha:0.85),
+                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.85),
                             height: 1.7,
                           ),
                         ),
@@ -292,14 +292,14 @@ class _HeroButtonState extends State<_HeroButton> {
           icon: Icon(widget.icon, size: 18),
           label: Text(widget.label, style: const TextStyle(fontWeight: FontWeight.w600)),
           style: ElevatedButton.styleFrom(
-            backgroundColor: widget.isPrimary ? AppColors.accent : Colors.white.withValues(alpha:0.15),
-            foregroundColor: widget.isPrimary ? AppColors.primary : Colors.white,
+            backgroundColor: widget.isPrimary ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.surface.withOpacity(0.15),
+            foregroundColor: widget.isPrimary ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSecondary,
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: widget.isPrimary
                   ? BorderSide.none
-                  : BorderSide(color: Colors.white.withValues(alpha:0.3)),
+                  : BorderSide(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3)),
             ),
             elevation: _isHovered ? 12 : 4,
           ),
@@ -323,7 +323,7 @@ class _StatItem extends StatelessWidget {
           style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.w800,
-            color: AppColors.accent,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         const SizedBox(height: 4),
@@ -331,7 +331,7 @@ class _StatItem extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 13,
-            color: Colors.white.withValues(alpha:0.7),
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
           ),
         ),
       ],

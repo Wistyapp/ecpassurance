@@ -51,12 +51,16 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
           gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [AppColors.gradient1, AppColors.gradient2, AppColors.gradient3],
+            colors: [
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.primaryContainer,
+              Theme.of(context).colorScheme.secondary,
+            ],
           ),
           borderRadius: BorderRadius.circular(32),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.3),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
               blurRadius: 40,
               offset: const Offset(0, 20),
             ),
@@ -73,7 +77,7 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
                 height: 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withOpacity(0.05),
+                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.05),
                 ),
               ),
             ),
@@ -85,7 +89,7 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
                 height: 150,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withOpacity(0.03),
+                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.03),
                 ),
               ),
             ),
@@ -99,7 +103,7 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
                   children: [
                     Icon(
                       Icons.shield_outlined,
-                      color: AppColors.accent,
+                      color: Theme.of(context).colorScheme.secondary,
                       size: isMobile ? 40 : 50,
                     ),
                     const SizedBox(height: 20),
@@ -109,7 +113,7 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
                       style: TextStyle(
                         fontSize: isMobile ? 24 : 36,
                         fontWeight: FontWeight.w800,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onPrimary,
                         height: 1.2,
                       ),
                     ),
@@ -121,7 +125,7 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: isMobile ? 14 : 17,
-                          color: Colors.white.withOpacity(0.85),
+                          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.85),
                           height: 1.6,
                         ),
                       ),
@@ -166,8 +170,8 @@ class _CtaButtonState extends State<_CtaButton> {
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.accent,
-            foregroundColor: AppColors.primary,
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            foregroundColor: Theme.of(context).colorScheme.primary,
             padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 22),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             elevation: _isHovered ? 12 : 4,

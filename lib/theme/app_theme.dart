@@ -27,11 +27,26 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primary,
-        brightness: Brightness.light,
+      colorScheme: ColorScheme.light(
+        primary: AppColors.primary,
+        primaryContainer: AppColors.primaryLight,
+        secondary: AppColors.accent,
+        surface: AppColors.surface,
+        background: AppColors.background,
+        onPrimary: Colors.white,
+        onSecondary: AppColors.primary,
+        onSurface: AppColors.textPrimary,
+        onBackground: AppColors.textPrimary,
       ),
-      textTheme: GoogleFonts.interTextTheme(),
+      textTheme: GoogleFonts.interTextTheme().apply(
+        bodyColor: AppColors.textPrimary,
+        displayColor: AppColors.textPrimary,
+      ),
+      cardTheme: CardTheme(
+        color: AppColors.surface,
+        surfaceTintColor: AppColors.primary,
+        elevation: 2,
+      ),
       scaffoldBackgroundColor: AppColors.background,
     );
   }
@@ -39,13 +54,25 @@ class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primary,
-        brightness: Brightness.dark,
+      colorScheme: ColorScheme.dark(
+        primary: AppColors.primary,
+        primaryContainer: AppColors.primaryLight,
+        secondary: AppColors.accent,
+        surface: AppColors.darkSurface,
+        background: AppColors.darkBackground,
+        onPrimary: Colors.white,
+        onSecondary: AppColors.primary,
+        onSurface: AppColors.darkTextPrimary,
+        onBackground: AppColors.darkTextPrimary,
       ),
       textTheme: GoogleFonts.interTextTheme().apply(
         bodyColor: AppColors.darkTextPrimary,
         displayColor: AppColors.darkTextPrimary,
+      ),
+      cardTheme: CardTheme(
+        color: AppColors.darkSurface,
+        surfaceTintColor: AppColors.primary,
+        elevation: 2,
       ),
       scaffoldBackgroundColor: AppColors.darkBackground,
     );

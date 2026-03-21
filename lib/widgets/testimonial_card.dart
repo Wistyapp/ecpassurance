@@ -39,18 +39,18 @@ class _TestimonialCardState extends State<TestimonialCard> {
             transform: Matrix4.identity()..translate(0.0, _isHovered ? -6.0 : 0.0),
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: _isHovered
-                    ? AppColors.accent.withOpacity(0.3)
-                    : Colors.grey.withOpacity(0.1),
+                    ? Theme.of(context).colorScheme.secondary.withOpacity(0.3)
+                    : Theme.of(context).colorScheme.outline.withOpacity(0.1),
               ),
               boxShadow: [
                 BoxShadow(
                   color: _isHovered
-                      ? AppColors.accent.withOpacity(0.15)
-                      : Colors.black.withOpacity(0.04),
+                      ? Theme.of(context).colorScheme.secondary.withOpacity(0.15)
+                      : Theme.of(context).colorScheme.shadow.withOpacity(0.04),
                   blurRadius: _isHovered ? 25 : 10,
                   offset: Offset(0, _isHovered ? 10 : 4),
                 ),
@@ -64,7 +64,7 @@ class _TestimonialCardState extends State<TestimonialCard> {
                   widget.quote,
                   style: const TextStyle(
                     fontSize: 15,
-                    color: AppColors.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                     height: 1.6,
                     fontStyle: FontStyle.italic,
                   ),
@@ -88,14 +88,14 @@ class _TestimonialCardState extends State<TestimonialCard> {
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.textPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         Text(
                           widget.role,
                           style: TextStyle(
                             fontSize: 12.5,
-                            color: AppColors.textSecondary,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ],

@@ -69,7 +69,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection>
       child: Container(
         padding: EdgeInsets.symmetric(vertical: isMobile ? 60 : 100),
         decoration: BoxDecoration(
-          color: Colors.grey[50],
+          color: Theme.of(context).colorScheme.background,
         ),
         child: Center(
           child: SizedBox(
@@ -87,7 +87,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection>
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                           decoration: BoxDecoration(
-                            color: AppColors.accent.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Text(
@@ -95,7 +95,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection>
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
-                              color: AppColors.accent,
+                              color: Theme.of(context).colorScheme.secondary,
                               letterSpacing: 2,
                             ),
                           ),
@@ -107,7 +107,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection>
                           style: TextStyle(
                             fontSize: isMobile ? 26 : 38,
                             fontWeight: FontWeight.w800,
-                            color: AppColors.textPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                       ],

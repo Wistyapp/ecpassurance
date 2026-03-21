@@ -20,7 +20,7 @@ class FooterSection extends StatelessWidget {
         vertical: 40,
       ),
       decoration: const BoxDecoration(
-        color: AppColors.primary,
+        color: Theme.of(context).colorScheme.primary,
       ),
       child: Column(
         children: [
@@ -45,7 +45,7 @@ class FooterSection extends StatelessWidget {
               ],
             ),
           const SizedBox(height: 30),
-          Divider(color: Colors.white.withValues(alpha: 0.1)),
+          Divider(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1)),
           const SizedBox(height: 16),
           Wrap(
             alignment: WrapAlignment.center,
@@ -53,11 +53,11 @@ class FooterSection extends StatelessWidget {
             children: [
               Text(
                 '© $year ${AppConstants.companyName} - Tous droits réservés',
-                style: TextStyle(fontSize: 12, color: Colors.white.withValues(alpha:0.5)),
+                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
               ),
               Text(
                 'ORIAS n°${AppConstants.orias}',
-                style: TextStyle(fontSize: 12, color: Colors.white.withValues(alpha:0.5)),
+                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
               ),
             ],
           ),
@@ -78,10 +78,10 @@ class FooterSection extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha:0.1),
+                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.shield_outlined, color: AppColors.accent, size: 22),
+                child: Icon(Icons.shield_outlined, color: Theme.of(context).colorScheme.secondary, size: 22),
               ),
               const SizedBox(width: 10),
               Column(
