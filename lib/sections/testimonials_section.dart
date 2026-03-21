@@ -90,7 +90,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection>
                             color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Text(
+                          child: Text(
                             'TÉMOIGNAGES CLIENTS',
                             style: TextStyle(
                               fontSize: 12,

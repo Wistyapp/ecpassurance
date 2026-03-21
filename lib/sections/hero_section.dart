@@ -71,7 +71,7 @@ class _HeroSectionState extends State<HeroSection>
 
     return Container(
       constraints: BoxConstraints(minHeight: isMobile ? screenHeight * 0.85 : screenHeight * 0.9),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -167,7 +167,7 @@ class _HeroSectionState extends State<HeroSection>
                       ),
                       const SizedBox(height: 8),
                       ShaderMask(
-                        shaderCallback: (bounds) => const LinearGradient(
+                        shaderCallback: (bounds) => LinearGradient(
                           colors: [Theme.of(context).colorScheme.secondary, Theme.of(context).colorScheme.secondary.withOpacity(0.8)],
                         ).createShader(bounds),
                         child: Text(
@@ -250,7 +250,7 @@ class _HeroSectionState extends State<HeroSection>
             right: 0,
             child: CustomPaint(
               size: Size(MediaQuery.of(context).size.width, 80),
-              painter: _WavePainter(),
+              painter: _WavePainter(color: Theme.of(context).colorScheme.surface),
             ),
           ),
         ],
@@ -320,7 +320,7 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.w800,
             color: Theme.of(context).colorScheme.secondary,
@@ -340,9 +340,13 @@ class _StatItem extends StatelessWidget {
 }
 
 class _WavePainter extends CustomPainter {
+  final Color color;
+
+  _WavePainter({required this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = const Color(0xFFF8F9FC);
+    final paint = Paint()..color = color;
     final path = Path()
       ..moveTo(0, size.height * 0.6)
       ..quadraticBezierTo(size.width * 0.25, size.height * 0.2, size.width * 0.5, size.height * 0.5)
@@ -352,6 +356,8 @@ class _WavePainter extends CustomPainter {
       ..close();
     canvas.drawPath(path, paint);
   }
+
+
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;

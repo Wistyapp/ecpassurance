@@ -48,7 +48,7 @@ class _CtaSectionState extends State<CtaSection> with SingleTickerProviderStateM
           vertical: isMobile ? 40 : 60,
         ),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [

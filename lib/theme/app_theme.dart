@@ -42,7 +42,7 @@ class AppTheme {
         bodyColor: AppColors.textPrimary,
         displayColor: AppColors.textPrimary,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.surface,
         surfaceTintColor: AppColors.primary,
         elevation: 2,
@@ -69,7 +69,7 @@ class AppTheme {
         bodyColor: AppColors.darkTextPrimary,
         displayColor: AppColors.darkTextPrimary,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.darkSurface,
         surfaceTintColor: AppColors.primary,
         elevation: 2,

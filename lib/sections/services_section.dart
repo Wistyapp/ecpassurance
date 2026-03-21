@@ -16,7 +16,7 @@ class _ServicesSectionState extends State<ServicesSection>
   late AnimationController _animController;
   bool _hasAnimated = false;
 
-  final List<_ServiceCategory> _categories = [
+  late final List<_ServiceCategory> _categories = [
     _ServiceCategory(
       title: 'Professionnels',
       subtitle: 'Protection complète pour votre entreprise',
@@ -278,7 +278,7 @@ class _ServiceCardState extends State<_ServiceCard> {
                         children: [
                           Text(
                             widget.category.title,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).colorScheme.onSecondary,
@@ -322,7 +322,7 @@ class _ServiceCardState extends State<_ServiceCard> {
                           Expanded(
                             child: Text(
                               service,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 color: Theme.of(context).colorScheme.onSurface,
                                 height: 1.4,

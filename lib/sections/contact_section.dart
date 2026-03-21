@@ -95,7 +95,7 @@ class _ContactSectionState extends State<ContactSection>
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: isMobile ? 60 : 100),
-        color: AppColors.background,
+        color: Theme.of(context).colorScheme.background,
         child: Center(
           child: SizedBox(
             width: contentWidth,
@@ -107,15 +107,15 @@ class _ContactSectionState extends State<ContactSection>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
-                      color: AppColors.accent.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text(
+                    child: Text(
                       'CONTACT',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.accent,
+                        color: Theme.of(context).colorScheme.secondary,
                         letterSpacing: 2,
                       ),
                     ),
@@ -127,7 +127,7 @@ class _ContactSectionState extends State<ContactSection>
                     style: TextStyle(
                       fontSize: isMobile ? 26 : 38,
                       fontWeight: FontWeight.w800,
-                      color: AppColors.textPrimary,
+                      color: Theme.of(context).colorScheme.onBackground,
                     ),
                   ),
                   SizedBox(height: isMobile ? 40 : 60),
@@ -168,7 +168,7 @@ class _ContactSectionState extends State<ContactSection>
           style: TextStyle(
             fontSize: isMobile ? 20 : 24,
             fontWeight: FontWeight.w700,
-            color: AppColors.textPrimary,
+            color: Theme.of(context).colorScheme.onBackground,
           ),
         ),
         const SizedBox(height: 12),
@@ -176,7 +176,7 @@ class _ContactSectionState extends State<ContactSection>
           'N\'hésitez pas à nous contacter pour toute demande d\'information ou de devis. Nous vous répondrons dans les plus brefs délais.',
           style: TextStyle(
             fontSize: 15,
-            color: AppColors.textSecondary,
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
             height: 1.6,
           ),
         ),
@@ -213,11 +213,11 @@ class _ContactSectionState extends State<ContactSection>
       return Container(
         padding: const EdgeInsets.all(40),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.06),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -228,24 +228,24 @@ class _ContactSectionState extends State<ContactSection>
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.success.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.check_circle, color: AppColors.success, size: 48),
+              child: Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primary, size: 48),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Message envoyé !',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Nous reviendrons vers vous très rapidement.',
-              style: TextStyle(fontSize: 15, color: AppColors.textSecondary),
+              style: TextStyle(fontSize: 15, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),
             ),
           ],
         ),
@@ -255,11 +255,11 @@ class _ContactSectionState extends State<ContactSection>
     return Container(
       padding: EdgeInsets.all(isMobile ? 24 : 36),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.06),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -270,12 +270,12 @@ class _ContactSectionState extends State<ContactSection>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Demande d\'audit gratuit',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
             const SizedBox(height: 24),
@@ -373,19 +373,19 @@ class _ContactSectionState extends State<ContactSection>
               child: ElevatedButton(
                 onPressed: _isLoading ? null : _submitForm,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   elevation: 2,
                 ),
                 child: _isLoading
-                    ? const SizedBox(
+                    ? SizedBox(
                   height: 20,
                   width: 20,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
+                    valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.onPrimary),
                   ),
                 )
                     : const Row(
@@ -422,16 +422,16 @@ class _ContactSectionState extends State<ContactSection>
       validator: validator,
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(icon, color: AppColors.primary, size: 20),
+        prefixIcon: Icon(icon, color: Theme.of(context).colorScheme.primary, size: 20),
         filled: true,
-        fillColor: AppColors.background,
+        fillColor: Theme.of(context).colorScheme.background,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -463,17 +463,17 @@ class _TypeChip extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.transparent,
+          color: isSelected ? Theme.of(context).colorScheme.primary : Colors.transparent,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: isSelected ? AppColors.primary : Colors.grey.shade300,
+            color: isSelected ? Theme.of(context).colorScheme.primary : Colors.grey.shade300,
           ),
         ),
         child: Text(
           label,
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: isSelected ? Colors.white : AppColors.textSecondary,
+            color: isSelected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
           ),
         ),
       ),
@@ -500,10 +500,10 @@ class _ContactInfoRow extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.08),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(icon, color: AppColors.primary, size: 20),
+          child: Icon(icon, color: Theme.of(context).colorScheme.primary, size: 20),
         ),
         const SizedBox(width: 14),
         Expanded(
@@ -512,19 +512,19 @@ class _ContactInfoRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.textSecondary,
+                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
                 ),
               ),
               const SizedBox(height: 2),
               Text(
                 value,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.textPrimary,
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
               ),
             ],

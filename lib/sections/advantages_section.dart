@@ -15,48 +15,48 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
   late AnimationController _animController;
   bool _hasAnimated = false;
 
-  final List<_Advantage> _advantages = [
+  late final List<_Advantage> _advantages = [
     _Advantage(
       icon: Icons.location_on,
       title: 'Expertise Locale',
       description:
       'Basés à Mérignac, nous connaissons parfaitement les besoins des professionnels et particuliers de la Gironde depuis de nombreuses années.',
-      gradient: [const Color(0xFF667EEA), const Color(0xFF764BA2)],
+      gradient: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
     ),
     _Advantage(
       icon: Icons.handshake,
       title: 'Courtage Indépendant',
       description:
       'Aucun lien exclusif avec une compagnie : nous négocions pour vous les meilleures conditions auprès de nos partenaires assureurs.',
-      gradient: [const Color(0xFF11998E), const Color(0xFF38EF7D)],
+      gradient: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
     ),
     _Advantage(
       icon: Icons.search,
       title: 'Audit Gratuit',
       description:
       'Analyse complète de vos contrats actuels pour identifier les économies possibles tout en améliorant votre couverture.',
-      gradient: [const Color(0xFFF093FB), const Color(0xFFF5576C)],
+      gradient: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
     ),
     _Advantage(
       icon: Icons.flash_on,
       title: 'Réactivité',
       description:
       'Un interlocuteur dédié disponible pour répondre rapidement à vos questions et gérer efficacement vos sinistres.',
-      gradient: [const Color(0xFF4FACFE), const Color(0xFF00F2FE)],
+      gradient: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
     ),
     _Advantage(
       icon: Icons.tune,
       title: 'Sur-Mesure',
       description:
       'Chaque situation est unique : nous élaborons des solutions d\'assurance parfaitement adaptées à votre profil et vos besoins.',
-      gradient: [const Color(0xFFA18CD1), const Color(0xFFFBC2EB)],
+      gradient: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
     ),
     _Advantage(
       icon: Icons.support_agent,
       title: 'Accompagnement',
       description:
       'De la souscription à la gestion des sinistres, nous vous accompagnons à chaque étape pour votre tranquillité d\'esprit.',
-      gradient: [const Color(0xFFFDA085), const Color(0xFFF6D365)],
+      gradient: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
     ),
   ];
 
@@ -113,7 +113,7 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
                             color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Text(
+                          child: Text(
                             'POURQUOI NOUS CHOISIR',
                             style: TextStyle(
                               fontSize: 12,
@@ -240,7 +240,7 @@ class _AdvantageCardState extends State<_AdvantageCard> {
                 const SizedBox(height: 20),
                 Text(
                   widget.advantage.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).colorScheme.onSurface,
@@ -250,7 +250,7 @@ class _AdvantageCardState extends State<_AdvantageCard> {
                 Expanded(
                   child: Text(
                     widget.advantage.description,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 13.5,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                       height: 1.6,

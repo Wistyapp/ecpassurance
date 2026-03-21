@@ -91,11 +91,11 @@ class _MainLayoutState extends State<MainLayout> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 boxShadow: _navElevated
                     ? [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.08),
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.08),
                     blurRadius: 15,
                     offset: const Offset(0, 4),
                   )
@@ -135,9 +135,9 @@ class _MainLayoutState extends State<MainLayout> {
               curve: Curves.easeOutBack,
               child: FloatingActionButton(
                 mini: true,
-                backgroundColor: const Color(0xFF1B3A5C),
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 onPressed: _scrollToTop,
-                child: const Icon(Icons.arrow_upward, color: Colors.white),
+                child: Icon(Icons.arrow_upward, color: Theme.of(context).colorScheme.onPrimary),
               ),
             ),
           ),

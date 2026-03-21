@@ -19,7 +19,7 @@ class FooterSection extends StatelessWidget {
         horizontal: isMobile ? 24 : 60,
         vertical: 40,
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
       ),
       child: Column(
@@ -87,13 +87,13 @@ class FooterSection extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'ECP',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 2),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onBackground, letterSpacing: 2),
                   ),
                   Text(
                     'ASSURANCES',
-                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.w600, color: AppColors.accent, letterSpacing: 3),
+                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary, letterSpacing: 3),
                   ),
                 ],
               ),
@@ -102,7 +102,7 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             AppConstants.tagline,
-            style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha:0.6), fontStyle: FontStyle.italic),
+            style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6), fontStyle: FontStyle.italic),
           ),
         ],
       ),
@@ -113,9 +113,9 @@ class FooterSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Informations légales',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onBackground),
         ),
         const SizedBox(height: 12),
         _FooterLink(label: 'SIRET : ${AppConstants.siret}'),
@@ -134,9 +134,9 @@ class FooterSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Contact',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onBackground),
         ),
         const SizedBox(height: 12),
         _FooterLink(
@@ -201,7 +201,7 @@ class _FooterLinkState extends State<_FooterLink> {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (widget.icon != null) ...[
-                Icon(widget.icon, color: Colors.white.withValues(alpha:0.4), size: 14),
+                Icon(widget.icon, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4), size: 14),
                 const SizedBox(width: 8),
               ],
               Flexible(
@@ -209,13 +209,13 @@ class _FooterLinkState extends State<_FooterLink> {
                   widget.label,
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.white.withValues(alpha:_isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5),
+                    color: Theme.of(context).colorScheme.onBackground.withOpacity(_isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5)),
                     ),
-                    decoration: widget.isLink ? TextDecoration.underline : null,
-                    decorationColor: Colors.white.withValues(alpha:0.7),
+                    //decoration: widget.isLink ? TextDecoration.underline : null,
+                    //decorationColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
                   ),
                 ),
-              ),
+
             ],
           ),
         ),

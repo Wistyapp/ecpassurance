@@ -62,7 +62,7 @@ class _TestimonialCardState extends State<TestimonialCard> {
                 // Quote
                 Text(
                   widget.quote,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     color: Theme.of(context).colorScheme.onSurface,
                     height: 1.6,
@@ -85,7 +85,7 @@ class _TestimonialCardState extends State<TestimonialCard> {
                       children: [
                         Text(
                           widget.author,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: Theme.of(context).colorScheme.onSurface,
