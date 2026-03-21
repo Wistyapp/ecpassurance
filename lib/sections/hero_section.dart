@@ -88,21 +88,16 @@ class _HeroSectionState extends State<HeroSection>
           Positioned(
             top: -100,
             right: -100,
-            child: AnimatedBuilder(
-              animation: _pulseAnimation,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _pulseAnimation.value,
-                  child: Container(
-                    width: 400,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.03),
-                    ),
-                  ),
-                );
-              },
+            child: ScaleTransition(
+              scale: _pulseAnimation,
+              child: Container(
+                width: 400,
+                height: 400,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withValues(alpha: 0.03),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -113,7 +108,7 @@ class _HeroSectionState extends State<HeroSection>
               height: 300,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.02),
+                color: Colors.white.withValues(alpha:0.02),
               ),
             ),
           ),
@@ -136,9 +131,9 @@ class _HeroSectionState extends State<HeroSection>
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withValues(alpha:0.1),
                           borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: Colors.white.withOpacity(0.2)),
+                          border: Border.all(color: Colors.white.withValues(alpha:0.2)),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -148,7 +143,7 @@ class _HeroSectionState extends State<HeroSection>
                             Text(
                               'Courtier indépendant à Mérignac',
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                                 fontSize: isMobile ? 12 : 14,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -196,7 +191,7 @@ class _HeroSectionState extends State<HeroSection>
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: isMobile ? 15 : 18,
-                            color: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withValues(alpha:0.85),
                             height: 1.7,
                           ),
                         ),
@@ -297,14 +292,14 @@ class _HeroButtonState extends State<_HeroButton> {
           icon: Icon(widget.icon, size: 18),
           label: Text(widget.label, style: const TextStyle(fontWeight: FontWeight.w600)),
           style: ElevatedButton.styleFrom(
-            backgroundColor: widget.isPrimary ? AppColors.accent : Colors.white.withOpacity(0.15),
+            backgroundColor: widget.isPrimary ? AppColors.accent : Colors.white.withValues(alpha:0.15),
             foregroundColor: widget.isPrimary ? AppColors.primary : Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
               side: widget.isPrimary
                   ? BorderSide.none
-                  : BorderSide(color: Colors.white.withOpacity(0.3)),
+                  : BorderSide(color: Colors.white.withValues(alpha:0.3)),
             ),
             elevation: _isHovered ? 12 : 4,
           ),
@@ -336,7 +331,7 @@ class _StatItem extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 13,
-            color: Colors.white.withOpacity(0.7),
+            color: Colors.white.withValues(alpha:0.7),
           ),
         ),
       ],

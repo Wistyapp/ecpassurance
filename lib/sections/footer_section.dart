@@ -3,11 +3,14 @@ import '../theme/app_theme.dart';
 import '../utils/ecp_responsive.dart';
 import '../utils/ecp_constants.dart';
 
+import 'package:go_router/go_router.dart';          // ← AJOUTER
+import 'package:url_launcher/url_launcher.dart';     // ← AJOUTER
+
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {                // context est dispo ici
     final isMobile = Responsive.isMobile(context);
     final year = DateTime.now().year;
 
@@ -25,24 +28,24 @@ class FooterSection extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildLogo(),
+                _buildLogo(context),          // ← passer context
                 const SizedBox(height: 24),
-                _buildLegalInfo(),
+                _buildLegalInfo(context),      // ← passer context
                 const SizedBox(height: 24),
-                _buildContactFooter(),
+                _buildContactFooter(context),  // ← passer context
               ],
             )
           else
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 2, child: _buildLogo()),
-                Expanded(flex: 2, child: _buildLegalInfo()),
-                Expanded(flex: 2, child: _buildContactFooter()),
+                Expanded(flex: 2, child: _buildLogo(context)),
+                Expanded(flex: 2, child: _buildLegalInfo(context)),
+                Expanded(flex: 2, child: _buildContactFooter(context)),
               ],
             ),
           const SizedBox(height: 30),
-          Divider(color: Colors.white.withOpacity(0.1)),
+          Divider(color: Colors.white.withValues(alpha: 0.1)),
           const SizedBox(height: 16),
           Wrap(
             alignment: WrapAlignment.center,
@@ -50,17 +53,11 @@ class FooterSection extends StatelessWidget {
             children: [
               Text(
                 '© $year ${AppConstants.companyName} - Tous droits réservés',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white.withOpacity(0.5),
-                ),
+                style: TextStyle(fontSize: 12, color: Colors.white.withValues(alpha:0.5)),
               ),
               Text(
                 'ORIAS n°${AppConstants.orias}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white.withOpacity(0.5),
-                ),
+                style: TextStyle(fontSize: 12, color: Colors.white.withValues(alpha:0.5)),
               ),
             ],
           ),
@@ -69,101 +66,105 @@ class FooterSection extends StatelessWidget {
     );
   }
 
-  Widget _buildLogo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
+  Widget _buildLogo(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.go('/'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha:0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(Icons.shield_outlined, color: AppColors.accent, size: 22),
               ),
-              child: const Icon(Icons.shield_outlined, color: AppColors.accent, size: 22),
-            ),
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'ECP',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                    letterSpacing: 2,
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'ECP',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 2),
                   ),
-                ),
-                Text(
-                  'ASSURANCES',
-                  style: TextStyle(
-                    fontSize: 8,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.accent,
-                    letterSpacing: 3,
+                  Text(
+                    'ASSURANCES',
+                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.w600, color: AppColors.accent, letterSpacing: 3),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Text(
-          AppConstants.tagline,
-          style: TextStyle(
-            fontSize: 13,
-            color: Colors.white.withOpacity(0.6),
-            fontStyle: FontStyle.italic,
+                ],
+              ),
+            ],
           ),
-        ),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            AppConstants.tagline,
+            style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha:0.6), fontStyle: FontStyle.italic),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildLegalInfo() {
+  Widget _buildLegalInfo(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
           'Informations légales',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white),
         ),
         const SizedBox(height: 12),
         _FooterLink(label: 'SIRET : ${AppConstants.siret}'),
         _FooterLink(label: 'ORIAS : ${AppConstants.orias}'),
         _FooterLink(label: 'RC Pro : Lloyd\'s'),
-        _FooterLink(label: 'Mentions légales', isLink: true),
+        _FooterLink(
+          label: 'Mentions légales',
+          isLink: true,
+          onTap: () => context.go('/mentions-legales'),   // ← MAINTENANT ÇA NAVIGUE
+        ),
       ],
     );
   }
 
-  Widget _buildContactFooter() {
+  Widget _buildContactFooter(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
           'Contact',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white),
         ),
         const SizedBox(height: 12),
-        _FooterLink(label: AppConstants.phone, icon: Icons.phone),
-        _FooterLink(label: AppConstants.email, icon: Icons.email),
+        _FooterLink(
+          label: AppConstants.phone,
+          icon: Icons.phone,
+          isLink: true,
+          onTap: () async {
+            final uri = Uri.parse('tel:+33556604853');
+            if (await canLaunchUrl(uri)) await launchUrl(uri);
+          },
+        ),
+        _FooterLink(
+          label: AppConstants.email,
+          icon: Icons.email,
+          isLink: true,
+          onTap: () async {
+            final uri = Uri.parse('mailto:${AppConstants.email}');
+            if (await canLaunchUrl(uri)) await launchUrl(uri);
+          },
+        ),
         _FooterLink(label: AppConstants.address, icon: Icons.location_on),
       ],
     );
   }
 }
+
+// _FooterLink et _FooterLinkState restent inchangés (ton code actuel est bon)
+
 
 class _FooterLink extends StatefulWidget {
   final String label;
@@ -200,7 +201,7 @@ class _FooterLinkState extends State<_FooterLink> {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (widget.icon != null) ...[
-                Icon(widget.icon, color: Colors.white.withOpacity(0.4), size: 14),
+                Icon(widget.icon, color: Colors.white.withValues(alpha:0.4), size: 14),
                 const SizedBox(width: 8),
               ],
               Flexible(
@@ -208,11 +209,10 @@ class _FooterLinkState extends State<_FooterLink> {
                   widget.label,
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.white.withOpacity(
-                      _isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5),
+                    color: Colors.white.withValues(alpha:_isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5),
                     ),
                     decoration: widget.isLink ? TextDecoration.underline : null,
-                    decorationColor: Colors.white.withOpacity(0.7),
+                    decorationColor: Colors.white.withValues(alpha:0.7),
                   ),
                 ),
               ),

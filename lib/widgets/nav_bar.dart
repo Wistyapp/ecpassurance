@@ -28,6 +28,15 @@ class _NavBarState extends State<NavBar> {
   bool _isMenuOpen = false;
 
   @override
+  void didUpdateWidget(covariant NavBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Fermer le menu quand la route change
+    if (oldWidget.currentPath != widget.currentPath && _isMenuOpen) {
+      setState(() => _isMenuOpen = false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isMobile = Responsive.isMobile(context);
 
