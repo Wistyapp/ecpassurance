@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../sections/hero_section.dart';
 import '../sections/services_section.dart';
 import '../sections/advantages_section.dart';
+import '../sections/testimonials_section.dart';
 import '../sections/cta_section.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,6 +18,7 @@ class HomePage extends StatelessWidget {
         HeroSection(onCtaTap: () => context.go('/contact')),
         ServicesSection(onServiceTap: (_) => context.go('/services')),
         const AdvantagesSection(),
+        const TestimonialsSection(),
         CtaSection(onCtaTap: () => context.go('/contact')),
       ],
     );

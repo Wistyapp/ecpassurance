@@ -1,8 +1,10 @@
 // lib/widgets/nav_bar.dart — VERSION AVEC ROUTING
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/ecp_responsive.dart';
+import '../providers/theme_provider.dart';
 
 class NavBar extends StatefulWidget {
   final String currentPath;
@@ -124,6 +126,15 @@ class _NavBarState extends State<NavBar> {
                       isActive: widget.currentPath == '/contact',
                       onTap: widget.onContactTap,
                     ),
+                    const SizedBox(width: 16),
+                    Consumer<ThemeProvider>(
+                      builder: (context, themeProvider, child) {
+                        return _ThemeToggleButton(
+                          isDarkMode: themeProvider.isDarkMode,
+                          onToggle: () => themeProvider.toggleTheme(),
+                        );
+                      },
+                    ),
                   ],
                 ),
 
@@ -177,6 +188,15 @@ class _NavBarState extends State<NavBar> {
                       isActive: widget.currentPath == '/contact',
                       onTap: () { widget.onContactTap(); setState(() => _isMenuOpen = false); },
                     ),
+                  ),
+                  const SizedBox(height: 16),
+                  Consumer<ThemeProvider>(
+                    builder: (context, themeProvider, child) {
+                      return _ThemeToggleButton(
+                        isDarkMode: themeProvider.isDarkMode,
+                        onToggle: () => themeProvider.toggleTheme(),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -305,6 +325,66 @@ class _ContactButtonState extends State<_ContactButton> {
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             elevation: _isHovered ? 8 : 2,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Theme Toggle Button ──
+class _ThemeToggleButton extends StatefulWidget {
+  final bool isDarkMode;
+  final VoidCallback onToggle;
+
+  const _ThemeToggleButton({
+    required this.isDarkMode,
+    required this.onToggle,
+  });
+
+  @override
+  State<_ThemeToggleButton> createState() => _ThemeToggleButtonState();
+}
+
+class _ThemeToggleButtonState extends State<_ThemeToggleButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: widget.onToggle,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: _isHovered
+                ? AppColors.accent.withOpacity(0.1)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                widget.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                size: 20,
+                color: widget.isDarkMode ? AppColors.accent : AppColors.primary,
+              ),
+              const SizedBox(width: 8),
+              if (!Responsive.isMobile(context))
+                Text(
+                  widget.isDarkMode ? 'Mode sombre' : 'Mode clair',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: widget.isDarkMode ? AppColors.accent : AppColors.primary,
+                  ),
+                ),
+            ],
           ),
         ),
       ),
