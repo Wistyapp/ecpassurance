@@ -58,8 +58,9 @@ class AppTheme {
         primary: AppColors.primary,
         primaryContainer: AppColors.primaryLight,
         secondary: AppColors.accent,
-        surface: AppColors.darkSurface,
-        background: AppColors.darkBackground,
+        surface: AppColors.darkSurface,           // #1E293B
+        surfaceContainerHighest: Color(0xFF283548), // un cran plus clair
+        background: AppColors.darkBackground,      // #0F172A
         onPrimary: Colors.white,
         onSecondary: AppColors.primary,
         onSurface: AppColors.darkTextPrimary,

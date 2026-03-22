@@ -53,11 +53,11 @@ class FooterSection extends StatelessWidget {
             children: [
               Text(
                 '© $year ${AppConstants.companyName} - Tous droits réservés',
-                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
+                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5)),
               ),
               Text(
                 'ORIAS n°${AppConstants.orias}',
-                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
+                style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5)),
               ),
             ],
           ),
@@ -78,7 +78,7 @@ class FooterSection extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(Icons.shield_outlined, color: Theme.of(context).colorScheme.secondary, size: 22),
@@ -89,7 +89,7 @@ class FooterSection extends StatelessWidget {
                 children: [
                   Text(
                     'ECP',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onBackground, letterSpacing: 2),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onPrimary, letterSpacing: 2),
                   ),
                   Text(
                     'ASSURANCES',
@@ -102,7 +102,7 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             AppConstants.tagline,
-            style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6), fontStyle: FontStyle.italic),
+            style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.6), fontStyle: FontStyle.italic),
           ),
         ],
       ),
@@ -115,7 +115,7 @@ class FooterSection extends StatelessWidget {
       children: [
         Text(
           'Informations légales',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onBackground),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onPrimary),
         ),
         const SizedBox(height: 12),
         _FooterLink(label: 'SIRET : ${AppConstants.siret}'),
@@ -136,7 +136,7 @@ class FooterSection extends StatelessWidget {
       children: [
         Text(
           'Contact',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onBackground),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onPrimary),
         ),
         const SizedBox(height: 12),
         _FooterLink(
@@ -201,7 +201,7 @@ class _FooterLinkState extends State<_FooterLink> {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (widget.icon != null) ...[
-                Icon(widget.icon, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4), size: 14),
+                Icon(widget.icon, color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.4), size: 14),
                 const SizedBox(width: 8),
               ],
               Flexible(
@@ -209,7 +209,7 @@ class _FooterLinkState extends State<_FooterLink> {
                   widget.label,
                   style: TextStyle(
                     fontSize: 13,
-                    color: Theme.of(context).colorScheme.onBackground.withOpacity(_isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5)),
+                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(_isHovered ? 0.9 : (widget.isLink ? 0.7 : 0.5)),
                     ),
                     //decoration: widget.isLink ? TextDecoration.underline : null,
                     //decorationColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),

@@ -92,7 +92,7 @@ class _AdvantagesSectionState extends State<AdvantagesSection>
       child: Container(
         padding: EdgeInsets.symmetric(vertical: isMobile ? 60 : 100),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onBackground,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: Center(
           child: SizedBox(
